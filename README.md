@@ -264,7 +264,51 @@ A summary of **movie-watching trends** over the years, indicating peak years for
 | 2022         | 2100           |
 | 2023         | 2800           |
 
+**PySpark Script Logic Explanation**
 
+**task1_binge_watching_patterns.py**
+
+Objective: Identify the percentage of users in each age group who binge-watch movies.
+
+Load Data: Reads the movie_ratings_data.csv file into a Spark DataFrame.
+
+Filter Data: Selects users where IsBingeWatched = True.
+
+Aggregate Data:
+
+Counts binge-watchers per AgeGroup.
+
+Counts total users per AgeGroup.
+
+Calculates the binge-watching percentage.
+
+Save Output: Writes the results to binge_watching_patterns.csv.
+
+**task2_churn_risk_users.py**
+
+Objective: Identify users at risk of churn based on canceled subscriptions and low watch time.
+
+Load Data: Reads the dataset into a DataFrame.
+
+Filter Data: Selects users where SubscriptionStatus = 'Canceled' and WatchTime < 100.
+
+Count Users: Aggregates and counts the number of churn-risk users.
+
+Format Output: Adds a descriptive column and reorders columns.
+
+Save Output: Writes the results to churn_risk_users.csv.
+
+**task3_movie_watching_trends.py**
+
+Objective: Analyze movie-watching trends over the years.
+
+Load Data: Reads the dataset into a DataFrame.
+
+Group Data: Groups by WatchedYear and counts the number of movies watched.
+
+Sort Data: Orders results by year.
+
+Save Output: Writes the results to movie_watching_trends.csv.
 ---
 
 ## **Grading Criteria**
