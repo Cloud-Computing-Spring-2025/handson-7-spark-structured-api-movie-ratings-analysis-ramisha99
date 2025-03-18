@@ -26,11 +26,18 @@ def analyze_movie_watching_trends(df):
     """
     Analyze trends in movie watching over the years.
 
-    TODO: Implement the following steps:
+    Steps:
     1. Group by `WatchedYear` and count the number of movies watched.
     2. Order the results by `WatchedYear` to identify trends.
     """
-    pass  # Remove this line after implementation
+
+    # Step 1: Count movies watched per year
+    trends_df = df.groupBy("WatchedYear").agg(count("*").alias("MoviesWatched"))
+
+    # Step 2: Order the results by year
+    trends_df = trends_df.orderBy(col("WatchedYear"))
+
+    return trends_df
 
 def write_output(result_df, output_path):
     """
@@ -44,11 +51,11 @@ def main():
     """
     spark = initialize_spark()
 
-    input_file = "/workspaces/MovieRatingsAnalysis/input/movie_ratings_data.csv"
-    output_file = "/workspaces/MovieRatingsAnalysis/outputs/movie_watching_trends.csv"
+    input_file = "/workspaces/handson-7-spark-structured-api-movie-ratings-analysis-ramisha99/input/movie_ratings_data.csv"
+    output_file = "/workspaces/handson-7-spark-structured-api-movie-ratings-analysis-ramisha99/outputs/movie_watching_trends.csv"
 
     df = load_data(spark, input_file)
-    result_df = analyze_movie_watching_trends(df)  # Call function here
+    result_df = analyze_movie_watching_trends(df)
     write_output(result_df, output_file)
 
     spark.stop()
